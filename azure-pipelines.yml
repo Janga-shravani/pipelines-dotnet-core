@@ -30,11 +30,12 @@ steps:
   - bash: 
       echo "##vso[task.setvariable variable=one]Hello Sandeep"
     displayName: Set new variable value
-  -  script: |
+  - script: |
       echo ${{ parameters.one }} # outputs  second value
       echo $(one) 
-     displayName: Second variable pass
-  -  script: |
+    displayName: Second variable pass
+  - script: |
         echo $(reference.one)
-     displayName: first value print
+    displayName: first value print
+  
   
