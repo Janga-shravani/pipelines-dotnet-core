@@ -5,10 +5,7 @@
 
 trigger:
 - master
-parameters:
-- name: one
-  type: string
-  default: Hello World
+
 
 
 pool:
@@ -22,20 +19,12 @@ steps:
 #     echo Add other tasks to build, test, and deploy your project.
 #     echo See https://aka.ms/yaml
 #   displayName: 'Run a multi-line script'
-  - script: |
-      echo ${{ parameters.one }} # outputs initialValue  
-    displayName: First variable pass
-  - bash: 
-      echo "##vso[task.setvariable variable=one]Hello Sandeep"
-    displayName: Set new variable value
-  
-  - script: |
-      echo ${{ parameters.one }} # outputs  second value
-    name: reference
-    displayName: Second variable pass 
 
-  - script: |
-      echo $(reference.one)
-    name: usereference
-    displayName: using
+- script: |
+    echo "##vso[task.setvariable variable=myVar;isOutput=true]Hello World"
+  name: setVar
+ 
+- script: |
+    echo $(setVar.myVar)
+  name: useVar
   
